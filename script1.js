@@ -1094,6 +1094,9 @@ function animate(time = 0) {
     requestAnimationFrame(animate);
 
 }
+   animate();
+
+}
 
 
 /* =====================================================
