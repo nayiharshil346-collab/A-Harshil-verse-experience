@@ -943,10 +943,10 @@ function startConfetti() {
     );
 
 
-    const ctx =
-        canvas.getContext(
-            "2d"
-        );
+    const ctx = canvas.getContext("2d", {
+    alpha: true,
+    desynchronized: true
+});
 
 
     function resize() {
@@ -990,7 +990,7 @@ function startConfetti() {
 
         let i = 0;
 
-        i < 300;
+        i < 240;
 
         i++
 
@@ -1003,13 +1003,7 @@ function startConfetti() {
                 *
                 canvas.width,
 
-            y:
-                -Math.random()
-                *
-                1000
-                -
-                20,
-
+           y: -(Math.random() * canvas.height),
             w:
                 8
                 +
@@ -1056,109 +1050,48 @@ function startConfetti() {
 
     }
 
+let lastTime = 0;
 
-    function animate() {
 
+function animate(time = 0) {
 
-        ctx.clearRect(
+    const delta = (time - lastTime) / 16.67;
+    lastTime = time;
 
-            0,
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            0,
+    confetti.forEach(function (c) {
 
-            canvas.width,
+        c.y += c.speed * delta;
+        c.angle += c.rotate * delta;
 
-            canvas.height
+        if (c.y > canvas.height + 20) {
 
+            c.y = -20;
+            c.x = Math.random() * canvas.width;
+
+        }
+
+        ctx.save();
+
+        ctx.translate(c.x, c.y);
+
+        ctx.rotate(c.angle * Math.PI / 180);
+
+        ctx.fillStyle = c.color;
+
+        ctx.fillRect(
+            -c.w / 2,
+            -c.h / 2,
+            c.w,
+            c.h
         );
 
+        ctx.restore();
 
-        confetti.forEach(
+    });
 
-            function (c) {
-
-
-                c.y +=
-                    c.speed;
-
-
-                c.angle +=
-                    c.rotate;
-
-
-                if (
-
-                    c.y >
-                    canvas.height
-                    +
-                    20
-
-                ) {
-
-                    c.y =
-                        -20;
-
-
-                    c.x =
-                        Math.random()
-                        *
-                        canvas.width;
-
-                }
-
-
-                ctx.save();
-
-
-                ctx.translate(
-                    c.x,
-                    c.y
-                );
-
-
-                ctx.rotate(
-
-                    c.angle
-                    *
-                    Math.PI
-                    /
-                    180
-
-                );
-
-
-                ctx.fillStyle =
-                    c.color;
-
-
-                ctx.fillRect(
-
-                    -c.w / 2,
-
-                    -c.h / 2,
-
-                    c.w,
-
-                    c.h
-
-                );
-
-
-                ctx.restore();
-
-            }
-
-        );
-
-
-        requestAnimationFrame(
-            animate
-        );
-
-    }
-
-
-    animate();
+    requestAnimationFrame(animate);
 
 }
 
