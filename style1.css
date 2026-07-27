@@ -1191,28 +1191,6 @@ button:hover {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* =====================================================
    Feedback & Info
 ===================================================== */
@@ -1487,7 +1465,7 @@ transition:
 
     color:white;
 
-    margin-bottom:20px;
+    margin-bottom:-10px;
 
     letter-spacing:4px;
 
