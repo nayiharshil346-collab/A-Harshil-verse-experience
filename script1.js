@@ -986,15 +986,7 @@ function startConfetti() {
         [];
 
 
-    for (
-
-        let i = 0;
-
-        i < 240;
-
-        i++
-
-    ) {
+    for (let i = 0; i < 220; i++) {
 
         confetti.push({
 
@@ -1027,6 +1019,7 @@ function startConfetti() {
 
             angle:
                 Math.random()
+
                 *
                 360,
 
@@ -1036,6 +1029,7 @@ function startConfetti() {
                 4
                 +
                 2,
+
 
             color:
                 colors[
@@ -1094,9 +1088,9 @@ function animate(time = 0) {
     requestAnimationFrame(animate);
 
 }
-   animate();
+animate();
 
-}
+} 
 
 
 /* =====================================================
@@ -1567,3 +1561,4 @@ if (sendFeedback) {
     );
 
 }
+S
