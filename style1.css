@@ -238,7 +238,7 @@ body {
 .experience-label {
     position: fixed;
     bottom: 30px;
-    left: 40px;
+    right: 40px;
 
     font-size: 10px;
     letter-spacing: 3px;
